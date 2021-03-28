@@ -12,7 +12,7 @@ public class TrappingRainWater {
 		
 		
 	}
-//	O(n^2)
+//	O(n^2)  - Naive
 	static int rainWater(int a[] ,  int n)
 	{
 		int ans = 0 ;
@@ -35,7 +35,7 @@ public class TrappingRainWater {
 		}
 		return ans;
 	}
-//	O(n) - store lmax in lmax[] - O(n)
+//	O(n) - store lmax in lmax[] - O(n)  - Efficient
 //		 	store rmax in rmax[] = O(n)
 //		 	use these values for each i directly -O(n) - > O(n+n+n) = O(n)
 	static int rainWat(int a[] ,  int n)
