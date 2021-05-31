@@ -1,0 +1,243 @@
+umber of digits - logn+1 - O(1)
+palindrome  =  0(d)
+trailing zeros =  logn
+GCD. -  naive : O(min(a,b) ) - Euclid -   - Opt Euclid - b==0 return a , else gcd(b,a%b) - O(logMIN(a,b))
+LCM - Naive - (a*b - max(a,b) -   a*b  = gcd(a,b) *lcm(a,b)   O(logMIN(a,b))
+Prime - 1. i=2;  i<n -O(n)  - 2. i=2;  i*i<n - O(sqrt(n))  
+-3. 6n-1, 6n+1, check for n%2 and n%3 - i=5 ;i*i<=n;i=i+6 -if(n%i==0 || n%(i+2)==0) return false; 3 times faster than (sqrt(n))
+Prime factors - 
+1. i =2 ; i<n ; i++
+	ifPrime(i) { x = i; while(n%x==0) { print(i); x=x*i;} }  - O(n^3/2 logn)
+2. divisor - pair of prime factors - 
+i =2 ; i*i<=n ; i++ { while(n%i==0) { print(i) ; n=n/i;}      - O(n^1/2 logn)
+if(n>1) print(n);	
+3. while(n%2==0) {print(2); n=n/2;}  while(n%3==0) {print(3); n=n/3;}  -  O(n^1/2)
+i=5 ;i*i<=n;i=i+6 {
+ while(n%i==0){print(i); n=n/i;}  while(n%i+2=0){print(i+2); n=n/i+2;}
+		   } if(n>3) print(n)
+All divisors of a Number
+Naive - O(n) - 2. i=1; i*i<=n;i++ { if(n%i==0) {print(i) if(n!=n/i) print(n/i)} - O(n^1/2)
+3. to print in sorted way - O(n^1/2  + n^1/2)
+
+Seive of Eratosthenese -  p 
+1. Naive - O(n*n^1/2) 
+2. seive
+
+Compute Power - 
+1. Naive -  O(n)
+2. b==0 return 0 ; temp = pow(a,b/2) ; temp *=temp ; if(b odd) a*temp; else temp;
+3. while(n>0) { if(n%2==0) {res=res*x;} x*=x ; n=n/2  } return res;
+
+
+arraYS - in java- always in heap segment
+1. LINEAR - inset -O(n) : Search-O(n) for unsoted, o(logn) for sorted : Delete -O(n)
+2. LARGEST-  O(n)
+3. SECOND LARGEST -1. Naive(nlogn) - 2. largest(n) + second loop(arr[i]!=arr[largest])(n) :O(2n)  -
+	3. a[i] >a[largest] : res =largest , largest=i      - O(n)
+   	a[i] == a[largest] igore
+   	a[i]!=a[largest] - > a[i]<a[largest] => res = -1, res=i;
+		    - > a[i]<=a[res] 	=> ignore
+		    - > a[i]>a[res]	=> res =i;
+4. CHECK IF ARRAY IS SORTED i=1 ; i<n -> if(arr[i-1]>arr[i]) return false = O(n)
+
+. REVERSE AN ARRAY AND UPDATE THE SAME - > swap (1 ans last), (2 and 2nd last) ... while(low<high) {swap(a[low],a[high]) low++;high--;}  - O(n),O(1)
+6. REMOVE DUP FROM SORTED ARR-> 1. print every ele in hash and print it O(n),O(n) -> 2. create temp[] - copy distinct of arr in temp - update arr witht temp O(n),O(n) -> .
+   3.res=1 - i=1;i<n - arr[i]!=arr[res-1] { arr[res]=arr[i]; res++} - O(n),O(1)
+
+7. MOVE ALL ZEROS TO END -> 1. Naive - for each zero(i=0;i<n) at i -search next non-zero(j=i+1;j<n) j - swap a[i],a[j]  -O(n^2),O(1) 
+   2. keep track of non-zere ele. c =0; for(i=0;i<n;) {if(a[i]!=0) swap(a[i],c) ; c++; }
+
+8. LEFT ROATATE ARR BY ONE(D)
+9. LEADERS IN ARRAY  - O(n^2)   - O(n) -  start from right
+10. MAXIMUM DIFFERENCE - 
+11. FREQUENCIES IN SORTED ARRAY - O(n ) -  if unsorted - sort+O(n) - O(nlogn) => if unsorted - O(n) - put in map, value ++
+12 SELL AND BUT STOCK - O(n^2) - O(n)keep on adding the profit of cumulative number
+13. TRAPPING RAINWATER  - O(n^2)for every i traverse Min(leftmax and rightmax) -arr[i]   - O(n),O(n) -store lmax[i], rmax[i] , res+=min(lmax[i],rmax[i] -a[i])
+14. MAXIMUM CONS 1's  - O(n)
+15. MAXIMUM SUBARRAY -  KADANES - O(n)
+16. MAX LENGTH EVEN _ODD SUBARR - kadanes -O(n)
+17. MAX CIRCULAR SUB ARRAY-  O(n),O(1) - max_normal-kadanes(arr,n) , max_circular=(arr_sum + kadanes(inverted_arr, n) -> return max(max_normal, max_circular)
+18. Majority Element - O(n),O(1) -find a candidate, check if its count >n/2.
+19. MINIMUM CONSECUTIVE FLIPS - O(n),O(1) - count 1, 0's count =n-(1's count) - comapre which is less that needs to be flipped.
+20. SLIDING WINDOW TECHNIQUE - 
+    find max sum of k consecutive ele - O(n^2)-  cal sum for every window.
+					O(n) - sum of curr window = sum of prev window - (first ele of prev window)  + (last ele of curr wind)
+21. FIND IF THERE IS SUBARR WITH GIVEN SUM -
+	1. O(n^2) - array 
+	2. hashmap -O(n)
+	3. O(n) - array - for =ve ele only - > s= 0; for( e=1 ;e<n ;e++) { a.while(curr_sum>sum && s<e-1){curr_sum+=arr[i];s++;}  b. if(curr_sum==sum) true; c.if (e<n) curr_sum+=arr[e] }
+22. PREFIX SUM : 
+	Calcualte prefix sum : for( i=1; i<n;i++) {prefixsum[i] = prefixsum[i-1] +a[i];}  - O(n)
+	Requirement: getsum(l,r) in O(1) - if(l!=0) prefixsum[r] - prefixsum[l-1]  , if(l==0) prefixsum[r]; 
+23. FIND IF ARR HAS EQUILIBRIUM POINT - any point in arr which has left sum == right sum	
+	O(n^2) - calculate l_sum , r_sum for each point
+	O(n) - 1. compute total sum 2. for(i=0;i<n;i++){ a. if(lsum=sum-a[i]) ret true;  lsum+=a[i] ;sum-=a[i];} ret false;
+	
+24. Given n ranges , find maximum appearing element in these ranges
+	O(n) - 1. arr[L[i]]++; arr[R[i]+1]--; for(i=1;i<1000;i++) { arr[i]+=arr[i-1]; if(max<arr[i]){max =  arr[i] ;res =i;}  } return res; 
+
+
+RECUSRSION
+1. PRINT DECMAL TO BINARY
+2. TAIL(eff, eg Quick sort, inO , preO) AND NON TAIL RECUSRION(ineff ,recusrion is not the last step, Eg merge sort, postO)
+3. FACTORIAL -  if(n==0 || n==1) ret 1; ret n*fact(n-1) - NTR
+	
+		k= 1; fact( int n , int k){ if(n==0|| n==1) ret k ; ret fact(n-1,k-1); }  - TR
+4. FIBONACCI - if(n<=1) ret n ; ret fin(n-1) + fib(n-2);
+5. SUM OF NATIURAL NUMBERS
+6. PALINDROME CHECK -  
+7. SUM OF DIGITS USING RECUSRION -
+8. ROPE CUTTING
+9. GENERATE SUBSETS
+10. TOH  - O(2^n) - 
+11. JOSEPHUS PROB - in jos( int n, int k) { if(n==1) return 0;  return (jos(n-1,k) +k)%n; }  T(n) =  T(n-1) + theta(1) = O(n)
+12. SUBSET SUM PROBLEM - O(2^n) int cs( int a[] , int n, int sum) { if(n==0) ret(sum==)?1:0; ret cs(a, n-1, sum) + cs(a, n-1,sum-a[n-1]); }
+13. PRINT PERMUTATION OF ALL STRING - 
+
+
+Searching 
+To Do:   Median of two soted arrays
+	Allocation of minimum nuber of pages
+1. Binary Search - while(l<=h) { int m =l+h/2 ; if(a[m] ==x) ret mid; else if(a[m]<x) l=m+1; else h=m+1;  }  TC : 0(logn) ASC : O(1)
+		 - { m = l+h/2; if(a[m] ==x) ret m ; else if ret BSearch(a,l,m-1,x); else ret Bsearch(a,m+1,h,x); } TC:O(logn) ASC:O(logn)
+
+2. Index of first Occurence(sorted arr) -1. naive- Linear -O(n)  2. binary search + if(a[m]==x) { if(m==0 || a[m-1]!=a[m]) ret m; else high =m-1;}    
+3. Index of Last Occurence(sorted arr) - 1. naive- Linear -O(n)  2. binary search + if(a[m]==x) { if(m==n-1 || a[m+1]!=a[m]) ret m ; else low =m+1;}
+4. COUNT OCCURENCE IN SORTED - 1. Naive -Linear -O(n)  2. binary Search find first(i) and last(j) occ index -  ret j-i+1   - O(2logn)
+5. COUNT OCC OF 1 - arr[0,0,0,1,1,1] - 1. BS - cond1. - arr[m] ==0   ; low= m+1 
+					       cond2  -	arr[m] ==1 -> left of arr[m] is 0  : ret n-m; ->  else left of a[m] is 1 : high =m-1;
+6. SQrt of X - 1. while(i*i<=x) i++ : O(x^1/2)  2. BS -O(logx) - while(l<=h) { if(m*m == x) ret m ; if(m*m >x) high =m-1; else { l= m+1; ans=m'}  }
+7. SEARCH IN INFINITE SORTED ARRAY - 1. Naive - O(pos) while(true) if a[i]==x ret i; ifa[i] >x ret -1; i++;
+				     2. BS - O(logPos) check for i=0 , else
+						       int i=1; while(arr[i] <x) { i=i*2; if(arr[i] ==x) ret i;  else ret BS(arr, x, i/2+1, i-1); }
+8. SEARCH IN SORTED ROTATED ARRAY - 1. Naive - Linear - O(n)
+				  - 2. BS (logn) - find mid - decide left or right half rotated -upadte low and high
+					while (l<=h { int m=(l+h)/2;  if(a[m]==x) ret m; 
+								      if(a[l]<a[mid] )  left halg sorted, search if value present in left half
+									{ if( x>= a[l] && x<a[mid]) h = m-1; else l =m+1; }
+								      else  // right half is sorted , seracj if value present in rigth half
+									{ if( x>= a[m] && x<a[h])  l= m+1; else h=m-1; }
+9. FIND PEAK ELEMENT - 1. Naive - Linear -  On)
+		       2. Bs -  Idea - if a[mid-1] >a[m] agr aisa h to leaftmost se mid-1 tak me atleast one peak will be present- loop the following under whil(l<=h)
+				m==0 && arr[m+1]<=arr[m] handles the first elenment
+				m==0 && m==n-1; contains only one ele
+				m==n-1 && arr[m-1] <=a[m] handles the last ele.
+				else if (m>0 && a[m-1]>=a[m]) h=m-1; else l=m+1;
+10. TWO POINTER APPROACH. Q- find if there is  a number in array with sum == x
+			1. Naive(unsorted)-O(n^2)
+			2. Hashing(unosrted) -O(n)  ASC:O(n) -put one by one - Before puttin check if sum-arr[i] presernts in hash table
+			3. Two ptr(Sorted arr)O(n) - int l=0; r=n-1; while(l<r)
+						{ if(a[l]+ a[r] >x) r--; else if( a[l]+a[r] <x) l++; else ret true;}
+Q. Whihc way to prefer for unsorted arr  ? HASHING
+
+11. TRIPLET WITH GIVEN SUM - run is pair for( i= 0 ;i<n-1; i++) for X =  x-a[i]
+			for( i=0 ;i<n-2;i++) { if(isPair(a,i+1,n-1,sum-a[i]) ret true;}
+EG: {2,3,4,8,9,20,40} sum = 32; itr 1 = if isPair true for 32-2 = 30 => triplet is available  else move to next ele.
+
+12. MEDIAN OF TWO SORTED ARRAYS: Naive - O((n1+n2)*log(n1+n2)) ASC -O(n1+n2)
+				eff -  BS O(log(n1+n2))
+13. REPEATING ELEMENTS
+14. MAJORITY ELEMENT
+
+SORTING : stable = IBM
+1. BUBBLE: BEST O(n) Worst(n^2)
+2. SELECTION: Best 0(n) 0 swap with itself elements : W O(n^2)
+3. INSERTION: Best O(n) -  W(O(n^2))
+4. MERGE : TC :O(nlogn) ASC: O(n)
+5. UNION OF TWO SORTED ARRAYS : Naive M1: O(m*n) - M2: O(m+n)
+6. INTERSECTION OF TWO SORTED ARRAYS: Naive M1: O(m*n) - M2: O(m+n)
+7. Count INVERSION IN ARRAY: use merge: TC:O(nlogn) ASC :  O(n)
+8. QUICK SORT - 
+	naive part -  two for loop to separate the min in left side and max in right side.
+	Lomuto - 
+		p-always last ele
+			int i =l-1; for( j =l ; j<r-1;j ++){ if(a[j] < pivot ) {i++ ; swap(a[j],a[i]} } swap[a[i+1],a[h]) return i+1;
+	Hoares -
+		p - always the first ele
+	i want: ele<pivot in left and ele>pivot in right = > So just search the ele>pivot in left and ele<pivot in right and swap them. TWO POINTER APPROACH.
+	int i =l-1; int j =h+1;
+	while(true) { do{i++;} while(a[i]<pivot) } do{j--;} while(a[j] >pivot)  if(i>=j) return j;  swap(a[i],a[j]);}
+Lomuto v/s Hoares
+1. pivot at correct pos : ret the  index of pivot		-		pivot not at its correct posn.
+2. better due 1.			
+3. but more comparison ( linear traversal)			-		two pointer approach (3 times faster than lOmuto)
+4. Not stable							- 		not stable
+Naive - three traversal but stable
+
+QUICK SORT  - inplace  - cache friendly -avgO(nlogn) - unlike merge, its tail recursive(Good)
+Lomuto 					Hoares
+int p = partition(arr,l,h)		int p = partition(arr,l,h)
+Qsort(arr,l,p-1)			Qsort(arr,l,p)
+Qsort(arr,p+1,h)			Qsort(arr,p+1,h)
+
+Analysis of Quick Sort
+Best -   O(nlogn) - array divide into equal halves => len(tree) = logn
+Worst -  O(n^2) - partition divide in such a way that only 1 ele in one side
+Avg  - O(nlogn) - unfair decison - cn - cn/10 and 9cn/10 type....
+space - Worst -max fn call at any moment - number of ele => O(n)
+	Best - array into two halves - theta(logn) 
+CHOICE OF PIVOT AND WORST CASE(sorted) OF QUICK SORT -  p = random(l,r) - > Lomuto -  swap(a[l],a[p]) -> hoares -swap(a[p],a[r])
+TAIL CALL ELIMINATON IN QUICK SORT- after partition which halves has less ele recur only for that part. dO call elimination for the larger  part.  - optimize space
+
+9. Kth SMALLEST IN ARRAY : m1 -O(nlogn)  sort -ret arr[k-1]
+			   m2 - O(n^2) if k==n else O(Kn)~O(n) - do lomuto k times, if(p==k-1) ret arr[p];
+				while(l<=r) { int p =  partition(arr, l, h) ; if(p==k-1) ret arr[p]; else if(p<k-1) l=p+1; else r=p-1; }
+10. CHOCOLATE DISTRIBUTION PROBLEM
+11. SORT AN ARRAY WITH TWO TYPES - M1 - O(n) - three traversal - M2 -O(n) Lomuto or Hoares
+12. SORT AN ARRAY WITH THREE TYPES - sort array of 0,1,2 - Three way prationing - Partition around a Range
+				   M1- Naive O(n) - four traversal( three opertaion + 1 update)  ASC:O(n)
+				   M2-Eff - DUTCH NATIONAL FLAG ALGO: TC: O(n)- 1traversal- ASC:O(1)
+					l0 =1;h=n-1; i=0;
+					while(i<=h)
+					{ if (arr[i] ==0) swap(a[i], a[l0]); l0++; i++;
+					  if (arr[i] ==1) i++;
+  					  if (arr[i] ==2) swap (a[i],a[h]); h--;
+					}
+
+13. MINUMUM DIFFERENCE IN ARRAY -  M1 - O(n^2) consider every pair and return min
+				   M2 - O(nlogn) return min diff of adj element
+14.MERGE INTERVALS- (left to)
+15. MEETING MAX GUESTS - sort (arr) , srot(dept); while(i<n && j<n) { ifa[i]<=dept[j]) curr++;i++;  else {curr--;j++;}  res =  max(curr, res);
+15. CYCLE SORT - Worst -O(n^2) - does min memory writes 
+20 40 50 10 30 - index 0->1->3->-0; cycle complete similarly for every index
+for(i=0; i<n-1; i++){
+ int item =a[i]; int pos=i; for( j=i+1;j<n;j++) { if(a[i]<item) pos++;} swap(item,a[pos]);    0->1  item becomes 40 a[pos(1)]=20
+
+we need to find a cycle; cycle found when pos==i
+while(pos!=i)
+{ pos = i; // since sorted before i;
+	for(j =i+1; j<n; j++) { if(a[j]<item) pos++; } swap(item, ar[pos]);
+}
+ arr 		 item	ar[pos]	pos=0
+20 40 50 10 30   20		1
+20 20 50 10 30	 40		3
+20 20 50 40 30	 10		0
+	
+16. HEAP SORT
+17. COUNTING  - subroutine for Radix 
+SORT Naive O(n+k)						Eff-		
+	arr={1,4,4,1,0,1} => count={1,3,0,0,2} 				same					tc  : O(n+k) ASC: O(n+k) count[k], output[n] -not a comp based - stable
+	just print the ith index count[i] times 		find prefix of count { 1,4,4,4,6}
+	ind =0;							int output =  new int [n]  
+	for( i=0;i<n;i++)					for( i =n-1; i>=0;i--)
+	{for(j=0;j<count[i' ; j++)  { arr[ind] =i; ind++;}	{ output[ count[arr[i]] -1 ] =arr[i]; count[arr[i]]--; }
+								update arr[i] =output[i]
+18.  Radix sort TC O(d*(n+k))  d = no of digits in max num
+319 212 6 8 100 50 rewrinting with leading zeros - > 319 212 006 008 100 050
+						 - > 100 050 212 006 008 319
+						 - > 100 006 008 212 319 050
+						 - > 006 008 050 100 212 319
+
+1. find max  -O(n)
+2. run the num of digits time counting sort for( exp =1; max/exp>-; exp*=10) { counting Sort(arr,n,exp);} 
+3. countiungSort(arr, n, exp){  1. find count[i]; for( i=0 ;i<n;i++) {count[(arr[i]/exp)%10]++ ;}
+				2. prefix count[] => count[i] =Num(of elements whose last digit is <=i)   for( i=1 ;i<10;i++) {count[i] +=count[i-1];}
+				3. traverse from right - Stable for( i=n-;i>=0;i--) {  output[ count[(arr[i]/exp)%10] -1] = arr[i]; count[ (arr[i]/exp)%10 ]--; }
+				4. update arr[i] to output
+			     }
+19. Bucket Sort - worst case - 2 bucket formed and push entire ele in it - O(nlogn)
+		  Best case  - 1 element in each bucket - O(n)
+1. find max value; 2. make bucket;   for(i=0 ;i <k;i++) bkt.add(new ArrayList<Integer>()); 
+3. fill bucket;for(i=0 ;i <n;i++) { int bi = (k*arr[i[)/max_val; bkt.get(bi).add(arr[i]; }
+4. sort bucket; for(i=0 ;i <k;i++) { CollectionsSort(bkt.get(i));
+5. join bucket ; join arraylist for(i=0 ;i <k;i++) { for(j=0 ;j<bkt.get(i).size();j++) { arr[ind++] = bkt.get(i).get(j)++; }
