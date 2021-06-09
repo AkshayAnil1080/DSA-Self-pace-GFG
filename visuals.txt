@@ -241,3 +241,179 @@ SORT Naive O(n+k)						Eff-
 3. fill bucket;for(i=0 ;i <n;i++) { int bi = (k*arr[i[)/max_val; bkt.get(bi).add(arr[i]; }
 4. sort bucket; for(i=0 ;i <k;i++) { CollectionsSort(bkt.get(i));
 5. join bucket ; join arraylist for(i=0 ;i <k;i++) { for(j=0 ;j<bkt.get(i).size();j++) { arr[ind++] = bkt.get(i).get(j)++; }
+
+
+
+QUEUE
+1. FIFO
+Applications
+a. single resource and multiple consumer EG ticket counter
+b. In OS,
+	Sephamores - there are sleeping processes waiting in Queue, as resource not available, whenever avaialable one of the processes wakes up and use the resource
+	FCFS scheduling - multiple processes wanna use single processor, whichever process comes first served first
+	Spooling - Used in printers, prints one page at a time
+	buffer for devices like keyboard 
+c. Synchronization b/w slow and fast devices -Keyboard slow device=> typing also slow and CPU is fast.
+ soln: all ch u type goes into the queue, CPU comes in a cycle and quickly takes up all the ch.
+d. IN Computer Networks,
+	Synchronization maintained by Routers - server providing services to multiple consumers.
+e. Variation of Queue
+	Dequeu, Priority Queue(eg, Assigning priopities to pateints), Double Ended Proirity Queue(eg. like to know the lowest proiroty patient, Dr can leave now, he might not need to serve).
+
+f. Summary : Queue data structure used in two situtations
+	Single resource - multiple consumers(want to serve in FCFS manner)
+	Need to synchronize slow and fast devices
+
+1. IMPLEMENTATION OF QUEUE WITH ARRAYS
+	class Queue{int size, cap; int arr[], Queue( int cap) { this.cap = cap; size =0; arr=new int[cap];} 
+	boolean isFull() { return (size==cap);}  o(1)
+	boolean isEmpty() { return (size==0);}	O(1)
+	int getFront() { if(isEmpty())ret -1; else ret 0;} O(1)
+	int getRear() { if(isEmpty())ret -1; else ret size-1;} O(1)
+	void enqueue(int x) { if(isFull() ret; arr[size]=x; size++;} O(1)
+	int dequeue() { if(isEmpty() ret -1;  for( i=0;i <size-1;i++) arr[i]=arr[i+1];} O(N)
+		}
+
+2. eff sol -Why ? to make dequeue in O(1)  - Use of Circular Array -- all op O(1)
+	int getFront() { if (isEmpty()) ret -1; return front;}
+	int getRear() { if(isEmpty()) ret -l; return (front+size-1)%cap; }
+	void enqueue(int x) { ifisFull() ret; int rear =getRear(); rear=(rear+1)%cap; arr[rear] =x; size++;}
+	void dequeue() { if(isEmpty() ret; front = (front+1)%cap; size--;}
+3. LINKED LIST IMPLEMENTATION	
+	enqueue - append at last of LL.
+	dequeue - Delete head Of LL. 
+	Idea : to perform above operations in O(1), need to maintain two ref.
+	class Node{ int data; Node next; Node (int data) { this.data=data; next=null;} }
+	class Queue { Node head, rear; int size;
+	void enqueue(int x) { Node newnode = new Node(x); size++; if(head==null) {head=rear=newnode; ret;}  rear.next=newnode; rear=newnode; }
+	int dequeue() {if(head==null) ret null; size--; Node temp=head; head =head.next; if(head.next=null) rear=null;   return temp.data; }
+	Node getFront() { return head;}
+	Node getRear() { return rear;}
+	int getSize() { return size;}
+		}
+QUEUE IN JAVA
+1.ll and Arraydeque imp Queue imp Collection
+2.intialization of Queue
+Queue<Integer> q = new LinkedList<>(); Worst O(1)
+Queue<Integer> q = new ArrayDeque<>();  // better, O(1) access, cache friednly as contiguous - faster - Amortized O(1) -> op involving resizing of array take linear time.
+3.Functions that returns null v/s throws exception
+ peek()	-	element()
+ offer()- 	add()
+ poll()	- 	remove()
+
+4. IMPLEMENTATION OF STACK USING QUEUE
+MAKE Q1; 
+PUSH K LIYE JUST - { reverse(q1);  q1.add(x); }
+POP - { reverse(q1) ; int temp = q1.remove(); }  
+REVERSE()
+
+5. REVERSE A QUEUE
+Iterative app-
+ a. create stack
+ b. while(q not empty) st.push(q.remove());
+ c. while(st not empty) q.add(st.pop()); 
+ d print q for( int x: q) print(q+" ");
+
+Recursive-
+void rev(Queue<Integer>){ if(q.isEmpty() ret; int x = q.poll(); reverse(q); q.add(x); }
+
+6. GENERATE NUMBER WITH GIVEN DIGITS => n=7; 5 6 55 56 65 66 555 ....
+a. create q, q.add('5'); q.add('6');  
+b. for(i=0;i<n;i++) { String curr = q.poll(): print(curr+" "); q.add(curr+"5"); q.add(curr+"6"); }
+
+
+Deque Data Structure - in java it is implemented using LL
+1. Implementation
+a. LL  - that too DLL WHY ? deletion from tail cannot be in O(1)
+b. Array - Circular array with front and rear indexes for every op to be in O(1)
+
+2.Applications
+a.Deque can be used as both Stack and Queue
+b. Maintaining History of Actions - whenever vis add in rear of Deque, and if buffer becomes full, start removing from front
+c. A STEAL PROCESS sCHEDULING ALGO - consider multiple process within the queue of P1 and P2. if P2 is free, it can pick some processes from rear of P1 which normal Queue does not allow
+d. IMPLEMENTATION PROIRITY QUEUE WITH TWO TYPES OF PRIORITY
+e. MAX/MIN OF ALL SUBARRAYS OF SIZE K IN AN ARRAY
+
+1. ARRAY IMPLEMENTATION
+class Deque{ int size, cap; int arr[], Deque(int cap) { this.cap=cap; size=0; arr=new int[cap];}
+boolean isFull(){ return (cap==size);}
+boolean isEmpty() { ret (size==0);}
+void insertRear(int x) { if (isFull() return; arr[size]==x; size++;}
+void deleteRear() { if(isEmpty() ret; size--;}
+void insertFront(int x) { if (isFull()) ret; for(i=size-1;i>=0;i--) {arr[i+1]=arr[i];} arr[0]=x; size++; }   O(n) - not good
+void deleteFront(){ if(isEmpty()) ret; for(i=0;i<size-1;i++) {arr[i]=arr[i+1]; size--;}			     O(n) - not good
+int getFront(){ if(isEmpty()) ret -1; retrun 0;}
+int getRear(){ if(isEmpty()) return -1; return size-1;}
+
+2. eff sol - use of Circular array to make insertFront and deleteFront in O(1).  rear is always  (front+size-1)%cap
+
+int getFront() { if(isEmpty()) ret -1; retrun front; }
+int getRear(){ if(isEmpty()) return -1; return (front+size-1)%cap;}
+void insertFront(int x) { if (isFull()) ret; front = (front-1+cap)%cap; //move back arr[front]=x; size++;}
+void deleteFront(if(isEmpty()) ret; front=(front+1)%cap; size--;}
+void insertRear() { if (isFull() return; int new_rear = (front+size-1+1)%cap; arr[new_rear] =x;}
+void deleteRear() { if (isEmpty()) ret; size--;}  // since there is no ptr for rear, we are always finding it using front and rear.
+
+
+3.Methods in Deque
+Throws exception	v/s	return false/null
+addFirst()		-	offerFirst()
+addLast()		-	offerLast()
+removeFirst()		-	pollFirst()
+removeLast()		-	pollLast()
+getFirst()		-	peekFirst()
+getLast()		-	peekLast()
+
+REDUNDANT FUNCTIONS - AD implements(imp) deque interface imp Queue interface imp Collections and provides main finctionalities of Stack class.
+Queue: it is a interface - insert at rear, delete from front - FIFO
+add()  same as addLast()		-	offer() same as offerLast()
+remove() same as removeFirst()		- 	poll()  same as pollFirst()
+element() same asgetFirst		-	peek()  same as peekFirst()
+
+Stack : LIFO - it is not an interface- its a legacy class inherits vectors.
+push() same as addFirst()
+pop() same as removeFirst()
+peek() same as peekFirst()
+
+So, total 21 methods can be used in Deque.
+WHY IT IS RECOMMENDED TO USE AD AS STACK AND QUEUE
+ANS.
+Use AD as Stack : AD is faster then Standard Stack Class - because stack uses vector which is threadsafe and issue of overhead occurs.
+Use AD as Queue : Queue used LL implementation where AD uses array implementation (faster)
+Use AD as Deque : Deque implementaion - LL and AD(preferred and faster)
+
+4. Traversing in a Deque
+a. Using iteretors; from first to last
+Iterator it = d.iterator();
+while(it.hasNext())
+	println(it.next()+" ");
+
+from last to first - Iterator it = d.descendingIterator();
+b. using for loop - first to last
+for( int x:d ) println(x+" ");
+
+ 
+5. DESIGN DATA STRUCTURE supports following op in O(1)
+a insertMin(x) dq.offerFirst() 
+b insertMax(x) dq.offerLast
+c getMin() -dq.peekFirst()
+d getMax() - dq.peekLast()
+e extractMin() - dq.removeFirst() 
+f extractMax() - dq.removeLast()
+
+6 MAXIMUM OF ALL SUBARRAYS OF SIZE K.
+m1. Naive - O(n^2) ASC -O(1)
+M2 - O(n) ASC O(1)
+a. keep putting elements in the dequeu addFirst -if smaller ele than prev keep in coming.
+b. if larger ele comes then prev, keep on removeLast
+10,8,5,12,15,7,6
+i=0; 0
+i=1; 0 1 
+i=2; 0 1 2  print(10)
+i=3; 3		12
+i=4; 4		15
+i=5; 4 5 	15
+i=6; 4 5 6	15
+
+7. FIRST CIRCULAR TOUR
+
