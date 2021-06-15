@@ -1,4 +1,4 @@
-umber of digits - logn+1 - O(1)
+ Number of digits - logn+1 - O(1)
 palindrome  =  0(d)
 trailing zeros =  logn
 GCD. -  naive : O(min(a,b) ) - Euclid -   - Opt Euclid - b==0 return a , else gcd(b,a%b) - O(logMIN(a,b))
@@ -21,7 +21,8 @@ Naive - O(n) - 2. i=1; i*i<=n;i++ { if(n%i==0) {print(i) if(n!=n/i) print(n/i)} 
 
 Seive of Eratosthenese -  p 
 1. Naive - O(n*n^1/2) 
-2. seive
+2. seive - a. boolean isPrime[] = new boolean[n+1]; Arrays.fill(isPrime,true);
+	   b. for(i=2; i*i<=n;i++) { if(isPrime(i)); //mark  the mutiples of this prime number as false - for(int j=2*i; i*i<=n ;j=j+i) { isPrime[j]==false; }
 
 Compute Power - 
 1. Naive -  O(n)
@@ -47,15 +48,18 @@ arraYS - in java- always in heap segment
 7. MOVE ALL ZEROS TO END -> 1. Naive - for each zero(i=0;i<n) at i -search next non-zero(j=i+1;j<n) j - swap a[i],a[j]  -O(n^2),O(1) 
    2. keep track of non-zere ele. c =0; for(i=0;i<n;) {if(a[i]!=0) swap(a[i],c) ; c++; }
 
-8. LEFT ROATATE ARR BY ONE(D)
-9. LEADERS IN ARRAY  - O(n^2)   - O(n) -  start from right
+8. LEFT ROATATE ARR BY ONE(D) - 1. reverse(arr,0,d-1) reverse(arr,d,n-1) reverse(arr,0,n)  - for reverse use while high,low.
+9. LEADERS IN ARRAY(At i, all rights should be smaller)  - O(n^2)   - O(n) -  start from right(rightmost always will be leader)
 10. MAXIMUM DIFFERENCE - 
 11. FREQUENCIES IN SORTED ARRAY - O(n ) -  if unsorted - sort+O(n) - O(nlogn) => if unsorted - O(n) - put in map, value ++
 12 SELL AND BUT STOCK - O(n^2) - O(n)keep on adding the profit of cumulative number
 13. TRAPPING RAINWATER  - O(n^2)for every i traverse Min(leftmax and rightmax) -arr[i]   - O(n),O(n) -store lmax[i], rmax[i] , res+=min(lmax[i],rmax[i] -a[i])
 14. MAXIMUM CONS 1's  - O(n)
 15. MAXIMUM SUBARRAY -  KADANES - O(n)
-16. MAX LENGTH EVEN _ODD SUBARR - kadanes -O(n)
+	-3 , 8 ,  -2,   4 ,    -5,     6				for(i=1;i<n;i++) { maxE=Math.max(maxE+arr[i], arr[i]);  //update res=Math.max(res,maxE); }
+maxE	  (5,8),(6,-2),(10,4),(5,-5),(11,6)
+res	    8  , 8    , 10   , 10   , 11
+16. MAX LENGTH EVEN _ODD SUBARR - kadanes - O(n)
 17. MAX CIRCULAR SUB ARRAY-  O(n),O(1) - max_normal-kadanes(arr,n) , max_circular=(arr_sum + kadanes(inverted_arr, n) -> return max(max_normal, max_circular)
 18. Majority Element - O(n),O(1) -find a candidate, check if its count >n/2.
 19. MINIMUM CONSECUTIVE FLIPS - O(n),O(1) - count 1, 0's count =n-(1's count) - comapre which is less that needs to be flipped.
@@ -95,7 +99,7 @@ RECUSRSION
 13. PRINT PERMUTATION OF ALL STRING - 
 
 
-Searching 
+Searching - 3 times
 To Do:   Median of two soted arrays
 	Allocation of minimum nuber of pages
 1. Binary Search - while(l<=h) { int m =l+h/2 ; if(a[m] ==x) ret mid; else if(a[m]<x) l=m+1; else h=m+1;  }  TC : 0(logn) ASC : O(1)
@@ -109,7 +113,7 @@ To Do:   Median of two soted arrays
 6. SQrt of X - 1. while(i*i<=x) i++ : O(x^1/2)  2. BS -O(logx) - while(l<=h) { if(m*m == x) ret m ; if(m*m >x) high =m-1; else { l= m+1; ans=m'}  }
 7. SEARCH IN INFINITE SORTED ARRAY - 1. Naive - O(pos) while(true) if a[i]==x ret i; ifa[i] >x ret -1; i++;
 				     2. BS - O(logPos) check for i=0 , else
-						       int i=1; while(arr[i] <x) { i=i*2; if(arr[i] ==x) ret i;  else ret BS(arr, x, i/2+1, i-1); }
+						       int i=1; while(arr[i] <x) { i=i*2; } if(arr[i] ==x) ret i;  else ret BS(arr, x, i/2+1, i-1); 
 8. SEARCH IN SORTED ROTATED ARRAY - 1. Naive - Linear - O(n)
 				  - 2. BS (logn) - find mid - decide left or right half rotated -upadte low and high
 					while (l<=h { int m=(l+h)/2;  if(a[m]==x) ret m; 
@@ -139,7 +143,7 @@ EG: {2,3,4,8,9,20,40} sum = 32; itr 1 = if isPair true for 32-2 = 30 => triplet 
 13. REPEATING ELEMENTS
 14. MAJORITY ELEMENT
 
-SORTING : stable = IBM
+SORTING : stable = IBM+
 1. BUBBLE: BEST O(n) Worst(n^2)
 2. SELECTION: Best 0(n) 0 swap with itself elements : W O(n^2)
 3. INSERTION: Best O(n) -  W(O(n^2))
@@ -149,7 +153,7 @@ SORTING : stable = IBM
 7. Count INVERSION IN ARRAY: use merge: TC:O(nlogn) ASC :  O(n)
 8. QUICK SORT - 
 	naive part -  two for loop to separate the min in left side and max in right side.
-	Lomuto - 
+	Lomuto - if found smaller ele < pivit => just increase the window of smaller ele and proceed
 		p-always last ele
 			int i =l-1; for( j =l ; j<r-1;j ++){ if(a[j] < pivot ) {i++ ; swap(a[j],a[i]} } swap[a[i+1],a[h]) return i+1;
 	Hoares -
@@ -164,7 +168,9 @@ Lomuto v/s Hoares
 4. Not stable							- 		not stable
 Naive - three traversal but stable
 
-QUICK SORT  - inplace  - cache friendly -avgO(nlogn) - unlike merge, its tail recursive(Good)
+QUICK SORT  
+a. divide and conquer - inplace  - cache friendly -avgO(nlogn) W:O(n^2)- unlike merge, its tail recursive(Good)  - s
+b. since we use hoares (not stable) , so if want stable use Merge Sort else Quick Sort.
 Lomuto 					Hoares
 int p = partition(arr,l,h)		int p = partition(arr,l,h)
 Qsort(arr,l,p-1)			Qsort(arr,l,p)
@@ -176,6 +182,7 @@ Worst -  O(n^2) - partition divide in such a way that only 1 ele in one side
 Avg  - O(nlogn) - unfair decison - cn - cn/10 and 9cn/10 type....
 space - Worst -max fn call at any moment - number of ele => O(n)
 	Best - array into two halves - theta(logn) 
+
 CHOICE OF PIVOT AND WORST CASE(sorted) OF QUICK SORT -  p = random(l,r) - > Lomuto -  swap(a[l],a[p]) -> hoares -swap(a[p],a[r])
 TAIL CALL ELIMINATON IN QUICK SORT- after partition which halves has less ele recur only for that part. dO call elimination for the larger  part.  - optimize space
 
@@ -416,4 +423,100 @@ i=5; 4 5 	15
 i=6; 4 5 6	15
 
 7. FIRST CIRCULAR TOUR
+50 10 60 100  - i=0 curr_pet=20 > i=1 c_p=10 > i=2 c_p=-30 >> start=3; prev_pet=-30; c_p =0; > i=3; c_p =90 ; return (c_p+prev+pet)>=0 ? start+1:-1 
+30 20 100 10
+
+
+STACK -Lifo
+1. Array imp-
+	class MyStack() { int arr[],int cap, int top; MyStack(int cap){this.cap=cap; top=-1; arr=new  int[cap]; }
+	void push(int x){ if(top==cap-1) ret; top++; arr[top]=x;}
+	void pop() {if(top==-1) ret; int res=arr[top]; top--; return res;}
+	void size() { return top+1;}
+	int peek() { if(top==-1) ret; return arr[top]; }
+	boolean isEmpty() { return (top==-1);}
+	boolean isFull() { return (top==cap-1);}
+			}
+
+Problems : No dynamic resizing - 
+Soln :	Use arrayList - No need to declare the cap
+	classMyStack { ArrayList<Integer> al = new ArrayList<>(); 
+	void push( int x) { al.add(x); }
+	void pop(){ if(isEmpty()) ret; int res =al.get(al.size()-1); al.remove(al.size()-1); return res;}
+	int peek() { return al.get(al.size()-1);
+	boolean isEmpty() { return al.isEmpty(); }
+	int size(){ return al.size();}
+			}
+3. Stack using LL -
+idea: push - append at head 	-O(1)    -- if appended at last of LL then pop => remove from tail which will take O(n) -so preferred to append at head
+      pop  - remove from head	- O(1)
+      peek - return head of LL
+	class stackNode { int data; stackNode next; stackNode(int data) { this.data=data; next=null;} }
+	class myStack{ stackNode head; 
+	void push(int x) { stackNode newnode = new stackNode(x); if(head==null) { head=newnode; ret;} else{ StackNode temp = newnode; temp.next=head; head=temp; }
+	int pop() { if(head==null) return -1; stackNode temp = head; head = temp.next; return temp.data; }
+	void peek() { if(head==null) ret -1; return head.data; }
+4. Applications
+	a. Function calls
+	b. Checking for balanced parentheses
+	c. Infix to postfix/prefix
+	d. Evaluation of Postfix/Prefix
+	e. Undo/redo or forward/backward op.
+	f. Stock span problem
+Stack ext Vectors ext List ext Collections
+AD ext Deqeu ext Queue ext Collections
+
+Q Why deque preferred over Stack?
+
+5. BALANCED PARANTHESES
+	ArrayDeque<Character> st = new ArrayDeque<>();
+		for ( int i =0 ;  i <n ; i++) { if(str.charAt(i)=='(' || [' || '{') {st.push(str.charAt(i));}
+						else { if (st.isEmpty()) ret false;							// handles ')' or '(()))'
+							else if( str.charAt(i)=closing && st.pop()==same closing) ||... continue;
+							else return false; }								// handles '(}'
+						} return(st.isEmpty()); 	 					
+6. IMPLEMENT TWO STACKS IN ARRAY
+NAIVE -divide array into two halves
+O(1) AS:O(cap)  stack1 from leftmost and stack2 from righmost
+
+7. K stacks in Array
+
+8.PREVIOUS GREATER ELEMENT
+	a. make a stack
+	b. push arr[0] ; print(-1);
+	c. for(i=1;i<n;i++) { jab v koi greatethanequal element mile than st.peek() - then pop from st.  print (ans)  where ans =st.isEmpty() ? -1 : st.peek(); , then push a[i]; }
+			    { while(!st.isEmpty() && arr[i]>=st.peek()) {st.pop(); ans = st.isEmpty() ? -1:st.peek() ;print ans();n}  st.push(arr[i]); }
+
+9. Stock Span - number of days  on left side <= day itself
+	a. make a St
+	b. push(arr[0] ) prinr(1);
+	c. for( i=1;i<n;i++) { while{ a.agr arr[i] >= st.peek() keep on popping b. span =st.isEmpty() ? i+1 : st.peek(); , c. then push i; }  print(st.peek());
+			exactly as above;
+
+10. NEXT GREATER ELEMENT 
+	a. make a st
+	b. do the q9 from the right; an aux arr will be req - int ans[] =new int[n]; int ind=n-1; st.push(a[n-1]) , ans[index]=1-; index--;
+	c. for n-1 the answer will be -1, since no ele present further. 
+	d. traversing from i =n-1; t>=0 ;i-- { while(!st.isEmpty() && arr[i]>=st.peek()) { st.pop(); } int res = st.isEmpty() ? -1 : st.peek(); ans[index]=res; index--; st.push(arr[i]); }
+
+11. LARGEST RECTANGULAR AREA IN HISTOGRAM
+	naive -m1 -O(n^2) AS:O(n)
+	idea;for a part i , traverse left such that arr[left]>=arr[i]; curr+=arr[i]; then traverse right such that arr[righ]>=arr[i] and curr+=arr[i]; 
+	after each iterarion of i, res=Math.max(res,curr);
+	
+	eff -M2 -O(n) 3 traversal AS: O(2n)
+	a. res=0;
+	b. find prev samller element (store index in ps[i])  of arr[i] and next smaller element (store indes in ns[i]) of arr[i];
+	c. curr=arr[i]; curr+=(i-ps[i]-1) *arr[i] ; curr+=(ns[i]-i-1)*arr[i];
+
+
+LINKED LIST - 
+WHY ? 
+a. size fixed and pre-allocated , now insertion at end will take O(n)  - LL no preallocation
+b. insert/ del in middle in array is costly     in LL - just change the ref
+c. Implemetation of Dequue, Queue, is comples in Array(Circular Array functionlaties) , but also faster and cache friendly than LL
+
+d. scenario - given a sequence of characters, if encountered x , insert 5 times y.
+e. merger sort in array - take aux space
+   merger sort in LL - no Aux space
 
