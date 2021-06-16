@@ -520,3 +520,94 @@ d. scenario - given a sequence of characters, if encountered x , insert 5 times 
 e. merger sort in array - take aux space
    merger sort in LL - no Aux space
 
+
+Trees
+a.Aplications
+	rep heirarchial str - org str , folder str, XML(html content(json obj) , in oop(inheritance)
+	BST, Binary heap, B and B+ tree in DBMS, Spanning and Shortest path tree in comp N/w , parse tree and expression tree in Compiler
+	Trie, Suffix Tree, Binary Index Tree, Segment
+
+1. BINARY TREE
+class Node{int key, Nodel left, Node right Node(int k){ key=k;} }
+class Test { main{ Node root = new Node(10); root.left(20); root.right(30); root.left.right(40); }
+
+2. TREE TRAVERSAL
+BREADTH FIRST (LEVEL ORDER)
+DEPTH FIRST( Inorder (Lt,root,Rt) , preOrder(root,Lt,Rt), PostOrder(Lt,Rt,root)
+
+Inorder(Node root) { if(root!=null) inoder(root.left); print(root.data);  inorder(root.right); }
+
+3. HEIGHT OF BINARY TREE  TC :  O(n) SC :O(logn) max function call at a time
+int ht(Node root) { if(root==null) ret 0; else ret Math.max(ht(root.left), ht(root.right) + 1);
+
+4. PRINT NODES AT K DISTANCE  - to print nodes at k+1 level.  TC : O(n) SC : O(h)
+idea :   make a fun( root , k )  - dicerement k as we traverse to next level and when k reaches 0 we print the nodes. => call recursively left and right with k-1
+
+void fun( Node root, k) { if(root==null) return ; if (k==0) print(root.data+ " ") else {fun(root.left, k-1); fun(root.right,k-1); } }
+
+5. LEVEL ORDER TRAVERSAL
+Idea :  1. use ht and print nodes at k dist
+	2. use Queue data str - a. enqueue the root into q  b. while deqeueu the items , enqueue their children(i.e. next level)
+
+code :	1. TC: O(hn) SC:(h)
+	 int ht= height(root); for(i=0;i<ht;i++) { printKDist(root,i); }    
+	
+	2. TC : O(n) - for every node we enqueue and dequeu once. 
+	   SC : O(w) - width of Binary tree 
+	 Make a queue Qeuue<Node> q = new LinkedList<>();
+	  { if(root==null) return;  q.add(root)
+	    while(!q.isEmpty()) { Node curr = q.poll(); print(curr); if(curr.left!=null) q.add(curr.left) ; if(curr.right!=null) q.add(curr.right); }
+	  } 
+
+5a. LOT(Part 1) Line by Line 
+Idea :  1. along with root, push null;    TC : O(N+h) ~ O(n)  SC:O(width)
+	 And if null encountered while poll, print new line , push another null  :
+Code : 	{ if(root==null) ret; q.add(root); q.add(null); 
+	  while(!q.isEmpty()) { Node curr = q.poll(); if(curr==null) { println(); q.add(null);} 
+						      else { print(curr); if(curr.left!=null) q.add(curr.left) ; if(curr.right!=null) q.add(curr.right); }
+			       } } 
+
+	 TC : O(N)  SC:theta(width)
+ 	2. Make a queue Qeuue<Node> q = new LinkedList<>();
+	  { if(root==null) return;  q.add(root)
+	    while(!q.isEmpty()) { int count=q.size();   for( i=0; i<count;i++) { 
+				Node curr = q.poll(); print(curr); if(curr.left!=null) q.add(curr.left) ; if(curr.right!=null) q.add(curr.right); } println();
+	  } 
+
+7. SIZE OF BINARY TREE
+Idea :  1. Itereative: while enqueing node in Level Order Traversal, count++ while enqueue each node.
+	2. Recursive: int size(Node root){ if(root==null) ret 0; else return 1+size(root.left) + size(root.right); 
+
+8. MAXIMUM IN BINARY TREE
+Idea : since there is no relation b/w the value of nodes, => have to visit each node(same as finding size of BT) and update the max
+	TC : O(n) since visiting each node , SC : O(ht) - max fn call at a time
+	int getMax(Node root) { if(root)==null return Integer.MIN_VALUE; 
+				else Math.max(root.data, Math.max( (getMax(root.left) , getMax(root.right) )); }
+
+9. PRINT LEFT VIEW OF BT.
+Idea : 1. iterative - print first node in level order traversel => TC : O(n) , SC :O(width) 
+	a. make a queue 
+	b. insert first ele 
+	c. while q not empty - store the size of level(size of queue) 
+	d. iteratate through size and poll the ele(add their children) -> if i==0 print curr.data a 
+	void fun(Node root) {  if(root)==null ret; Queue<Node> q = new LinkedList<>(); q.add(root);
+	while(!q.isEmpty()) { int count =q.size(); for(i=0;i<count;i++) { Node curr=q.poll(); if (i==0) print(curr.data+" "); if(curr.left!=null) q.add(curr.left); (same for right); } } }
+
+	2. Recursive - TC :O(n) - visting each node , SC : O(h) - max fn call at a time
+	a. create ml -1; lev=0 for root and keep incrementing as move to next level
+	b. for each level if ml<l print root.data and call recursively for root.left and root.right.
+	static int ml=0;
+	fun(Node root, int lev) {  bc ; if(ml<l) {print(root.data+ " "); ml =lev; } fun(root.left,lev+1); fun(root.left,lev+1); }
+	void PrintLeft(Node root) { fun(root,1); } 
+
+10. CHILDREN SUM PROPERTY - sum of child data== parent data
+Idea :  a. BC :  true - if root is null 2.true if both childs are null
+	b. what to do - > sum= root.left.data+root.right.data ; if(summ==root.data) ret true;
+	c. need to check for all nodes -> recursive call for fun(root.right) && fun(root.left)
+
+TC:O(n) - visiting each node - SC :O(h)- max fn call at a time
+Code : func(Node root) { bc 1. if(root)==null ret true; bc 2. if(root.left==null && root.right==null) ret true;
+			int sum = 0; if(root.left!=null) sum+=root.left.data;  if(root.right!=null) sum+=root.right.data;
+			retrurn (root.data==sum && fun(root.left) && fun(root.right) );
+			}
+
