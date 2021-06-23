@@ -3,7 +3,11 @@ https://practice.geeksforgeeks.org/problems/topological-sort/1/?track=DSASP-Grap
 https://practice.geeksforgeeks.org/viewSol.php?subId=6b4d01226cff89c6f52a756390cb626f&pid=700255&user=akshayanil
 
 
-BFS based sol :
+// BFS based sol :
+// a. make an array of indegree for every vertex -O(V+E)
+// b. create a queue - push with indegree==0
+// c. while q not empty- poll once - print data- and reduce the indegree of neighbours by 1 - add as soon as indegree of any reaches 0.
+
 class Solution
 {
     //Function to return list containing vertices in Topological order.

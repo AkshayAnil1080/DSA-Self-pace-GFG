@@ -1,6 +1,6 @@
-
-
-
+Medium
+https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1/?track=DSASP-Graph&batchId=154
+https://practice.geeksforgeeks.org/viewSol.php?subId=9a627edca56835578fd74ebc267aff46&pid=700219&user=akshayanil
 
 class Solution
 {
