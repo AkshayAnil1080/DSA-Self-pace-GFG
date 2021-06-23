@@ -13,7 +13,7 @@ class Solution
         //code here
         HashSet<Integer> set = new HashSet<>();
         ArrayList<Integer> al =new ArrayList<Integer>();
-        
+
         inorder(root1,set);
         in(root2,set,al);
 
