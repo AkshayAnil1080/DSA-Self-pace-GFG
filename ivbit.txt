@@ -1,0 +1,4 @@
+1.Noble Integer -  find if an integer p exists in the array such that the number of integers greater than p in the array equals to p.   A = [3, 2, 1, 3]  = 2
+a. sort , b. traversal - if dup i++; else if(A[i]==n-i-1) return 1;
+
+2.

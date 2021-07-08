@@ -1,0 +1,70 @@
+RECURSION 1.
+1. Print decimal to binary
+2. Tail rec(End with recur,Quick Sort, fast) v/s not tail(Merge)
+3. Palindrome Checking -  start and end match, then fir start+1, end-1;
+4. Rope Cutting Problem - recur for ever cut and take max.
+5. Generate Subsets -  take one and dont take.
+6. Tower OF hanoi -
+7. Josephus - if(n==1) ret 0 ; ret (fun(n-1,k)+k)%n
+8. Subset Sum Problem - take and dont take.  O(2^n) - use DP O(n)
+9. Print Permutaion of all String - calling swap, recur, swap under for loop
+
+Bit Magic 1.
+1. -x = 2^32-x; => ~5 = 2^32-1-5
+2. L(<<)M R(>>)D   -2>>y = -1; y>=1
+3. Unsigned right shift >>> : -2 >>> 2 => 11(31times)0 -> 00(30times 1) = 2^30 -1
+4. Check k the bit is set or not from right side  - 1. form a number whose kth bit it only set set(n<<(k-1)) and do & with n
+						    2. or just divide it k times , n>>k-1 -> n&1==1 : yes
+5. Count set bits
+	1. 2. find n&n-1 until n>0 ; res++; idea-wait for n to become a number in power of 2. - Brian Kernigans algo
+	3. lookup table O(1) 
+6. Power of Two - 1. ret n&n-1 if 0 -> yes else no  2. count set bit, if==1, yes
+7. One odd occuring - one ele is repeated just once , other twice  -> find xor
+8. Two odd Ocurring - two unique ele , others repeated twice - > find all= all & ~all will be 0 or 1-> for() if(a[i]&all==0) ans1=ans1^a[i] , else ans2=ans2^A[i]  { two sets(even,odd) will be formed} 
+9. Power Set using bitwise - 
+
+Matrix 1.
+1. Print Snake Pattern - i loop if i odd print a[i][j] else print A[i][n-1-j];
+2. Boundary Traversal - 4 for loop
+3. Transpose - i=0 i<n - > j=i+1;j<n ; swap(A[i],A[j][i])
+4. rotate by 90 clockwise -  a. find transpose  b. swap 1st col to last col -> 2nd to 2nd last col > and so on....
+5. Spiral - 4 ptr(top,  right, while(top<=bottom && left<=right)
+		  left, bottom)
+6. Search in Row-Wise(sorted) & Column-Wise(sorted) -O(r+c): ptr at(righttop / left bottom) while(j>=0 && i<R) { if ele smaller move left, of greater move right)
+7. Median of Row Wise Sorted Matrix - r*logc*log(max-min)
+
+Hashing 2.
+1. Collsion Handling 
+	Chaining  - alpha=n(keys)/m(slots)  , search/delete O(1+alpha)   --for chains -LL(l),AL(l), SelfBalancing BST:S/I/D (logl)
+	Open Adressing -a. Linear k%7 - if coll -> linear(cir Arr) search for next empty slot 
+			b. while deletion, mark it deleted
+			c. Problems - vertical Clusters
+
+			a. Quadratic k%7 - if coll -> (h(key)+i^2)%m
+			b. problem - may not find an empty slot even if there present one.
+			c. Sol - 1. alpha=n/m <0.5   2.make m prime
+
+			 Double
+			a. h1(key) if coll -> i*(m-1 -h1(key))
+			b. h2(key) is relatively prime to m - then i*h2 will always give the new index;
+			c. no clustering
+Note - expected number of trials for unsucessfull search 1/(1-alpha)
+Chaining								open Addressing
+a. hash table never fills					a. table may become full
+b. less sensitive to hash fn					b. extra  care is taken to avoid clustering
+c. poor cache performance					c. Cache friendly
+d. extra space for links O(1+alpha)				d. extra space might be needed to achieve 
+
+1. Count Distinct Ele - put in set and ret size
+2. Feq of arr ele - map.put(A[i], getOrDefault(A[i],0)+1)
+3. intersection/Union of two arrays - put one in set . traverse in other if set.contains(B[j]) print it     - sort B if repeating not to be printed
+				union - put A and B in one set - ret size;
+4. Pair with given sum in unsorted arr - traverse( if set.contains(sum-A[i]) ret true)  else set.add(A[i])
+5. sub array with zero/given(x) sum - traversre(sum+=A[i] ; if set.contains(sum-x) ret true; if(sum==x) ret true; set.add(sum); }
+6. largetst sub arr with given sum - traverse{ sum+=A[i]; if(m.containsKey(sum-s) res=max(res,i-m.get(sum-s)); if(sum==s) res=i+1;  if(!m.containsKey(sum)) m.put(sum,i); } ret res;
+7. longest sub arr with equla number of 0's and 1's - a. replace 0->-1  , find largest sub arr with sum =0;
+8. longest common span with same sum in binary arr - temp=arr1-arr2 ; find largest sub arr with sum =0;
+9. longest consecutive subsequence(LCS) - 1. Arraynlogn- sort and check A[i]=A[i-1]+1 update res; 2. add all in set  ,(2n) traverse in set{ if !set.contains(x-1) c=1 while(set.contains(x+c){c++;} update res}
+10. count distinct ele in every window - 
+11. More than n/k.
+
