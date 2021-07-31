@@ -1,0 +1,21 @@
+13. Mother Vertex
+// idea dfs:  TC : V*(V+E)
+//1. do dfs for all vertex
+//2 maintain vis[] , count, for DFS of each vertex
+  // After each iteration, check if(count==V) { Math.min(res, i); Arrays.fill(vis,false) }
+  // After all iterations, return res;
+
+14. Unit Area of largest region of 1's
+/// Idea: using dfs in all eight dir as soon as we get 1 in grid - TC:(m*n), SC:(m*n)
+  // 1. nested loop for findning 1- intialize count=0; call dfs , after completion of dfs update res=Math.max(res,c);
+  // 2. in dfs - include safe condition , if value is 1, mark it 0, increment count , recur in all 8 dir
+
+15. Rotten Oranges Level: Medium
+// idea to use BFS,
+//1. push all indexes of rotten tomatoes in Queue and then push a delimiter
+// delimiter - to maintain the unit time  and number of phases required to convert all fresh to rotten
+//2. now pop until del is reached and for each index check all four (right,up,left,dowm) points safe and equls to 1.
+// if yes marked it rotten one and push to Queue
+//3. while popping each item maintain flag and ans ,increment ans++ just once in each phase.
+//4. when deli reached pop the deli and check if q is not empty push deli again for next phase.
+//5. At last when  q is empty return(if still any 1 remaining in grid) -1: ans;
